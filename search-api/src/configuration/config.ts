@@ -9,6 +9,7 @@ const MONGO_DB = process.env.MONGO_DB;
 
 const DB_URL = `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`;
 
+//port
 const PORT = process.env.PORT || 5000;
 
 export { DB_URL,PORT };
