@@ -1,7 +1,6 @@
 import { IAds } from "../interfaces/services/ads";
 
 import { AdsModel } from "../models/Ads";
-import { CompanyModel } from "../models/Company";
 
 const createAds = async (adsDetail: IAds) => {
   try {
