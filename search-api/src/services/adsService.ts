@@ -1,6 +1,7 @@
 import { IAds } from "../interfaces/services/ads";
 
 import { AdsModel } from "../models/Ads";
+import { CompanyModel } from "../models/Company";
 
 const createAds = async (adsDetail: IAds) => {
   try {
@@ -14,15 +15,15 @@ const createAds = async (adsDetail: IAds) => {
 
 const getSearchAds = async (searchText: string) => {
   try {
-    const rgx = (pattern) => new RegExp(`.*${pattern}.*`);
+    const rgx = (pattern : string) => new RegExp(`.*${pattern}.*`);
     const searchRgx = rgx(searchText);
     const resultData = await AdsModel.find({
       $or: [
         { primaryText: { $regex: searchRgx, $options: "i" } },
         { headline: { $regex: searchRgx, $options: "i" } },
-        { description: { $regex: searchRgx, $options: "i" } },
+        { description: { $regex: searchRgx, $options: "i" } },    
       ],
-    });
+    }).populate('companyId');
     return resultData;
   } catch (error) {
     return Error("No team Found");

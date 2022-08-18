@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { CallbackWithoutResultAndOptionalError, Document } from "mongoose";
 
 const Schema = mongoose.Schema;
 
@@ -17,7 +17,7 @@ counterSchema.index({ _id: 1, seq: 1 }, { unique: true });
 
 const CounterModel = mongoose.model("counterSchema", counterSchema);
 
-const autoIncrementModelId = (modelName: string, document: Document, next) => {
+const autoIncrementModelId = (modelName: string, document: Document, next : CallbackWithoutResultAndOptionalError) => {
   CounterModel.findByIdAndUpdate(
     modelName,
     { $inc: { seq: 1 } },
@@ -29,7 +29,7 @@ const autoIncrementModelId = (modelName: string, document: Document, next) => {
       if (error) {
         return next(error);
       }
-      document.id = counter.seq;
+      document._id = counter.seq;
       next();
     }
   );

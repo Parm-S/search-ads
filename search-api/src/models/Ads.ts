@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, CallbackWithoutResultAndOptionalError } from "mongoose";
 
 import { IAds } from "../interfaces/models/ads";
 
@@ -7,13 +7,11 @@ import { autoIncrementModelId } from "./Counter";
 const adsSchema = new Schema<IAds>({
   _id: {
     type: Number,
-    unique: true,
     min: 1,
-    required:true
   },
   companyId: {
     type: Number,
-    ref: 'companySchema'
+    ref: "companySchema",
   },
   primaryText: {
     type: String,
@@ -32,7 +30,7 @@ const adsSchema = new Schema<IAds>({
   },
 });
 
-adsSchema.pre("save", function (next) {
+adsSchema.pre("save", function (next: CallbackWithoutResultAndOptionalError) {
   if (!this.isNew) {
     next();
     return;
