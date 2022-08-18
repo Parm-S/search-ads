@@ -25,7 +25,7 @@ const getSearchAds = async (searchText: string) => {
     }).populate('companyId');
     return resultData;
   } catch (error) {
-    return Error("No team Found");
+    return Error("No ads Found");
   }
 };
 
