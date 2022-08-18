@@ -46,6 +46,7 @@ const AdsView: React.FC = () => {
                 companyId={searchAd.companyId}
                 cta={searchAd.cta}
                 imageUrl={searchAd.imageUrl}
+                companyData={searchAd.companyData}
               />
             </Grid>
           ))

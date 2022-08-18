@@ -10,14 +10,14 @@ import Button from "@mui/material/Button";
 import CardMedia from "@mui/material/CardMedia";
 
 const ParticularAd: React.FC<ISearchAds> = (searchAd) => {
-  const { primaryText, description, imageUrl, cta, companyId } = searchAd;
+  const { primaryText, description, imageUrl, cta, companyId , companyData } = searchAd;
 
   return (
     <Card sx={{ width: 1 }} >
       <CardMedia
         component="img"
         height="140"
-        alt={companyId.name}
+        alt={companyData.name}
         image={imageUrl}
         sx={{
           objectFit: "contain",
@@ -32,7 +32,7 @@ const ParticularAd: React.FC<ISearchAds> = (searchAd) => {
           alignItems: "flex-start",
         }}
       >
-        <Typography variant="h5">{companyId.name}</Typography>
+        <Typography variant="h5">{companyData.name}</Typography>
         <Typography
           variant="body1"
           color="text.secondary"
@@ -53,7 +53,7 @@ const ParticularAd: React.FC<ISearchAds> = (searchAd) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" component="a" href={companyId.url}>
+        <Button size="small" component="a" href={companyData.url}>
           {cta}
         </Button>
       </CardActions>

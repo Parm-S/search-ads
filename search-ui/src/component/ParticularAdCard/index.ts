@@ -8,11 +8,12 @@ interface ICompany {
 
 interface ISearchAds {
   _id: number;
-  companyId: ICompany;
+  companyId: number;
   primaryText?: string;
   description?: string;
   cta: string;
   imageUrl: string;
+  companyData : ICompany
 }
 
 export type { ICompany, ISearchAds };
