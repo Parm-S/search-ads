@@ -1,22 +1,33 @@
 import { Request, Response } from "express";
+import {
+  RequestBody,
+  RequestParams,
+  RequestQuery,
+  ResponseBody,
+} from "../interfaces/services/ads";
+
+import { createAds, getSearchAds } from "../services/adsService";
 
 const addAds = async (request: Request, response: Response) => {
   try {
     const ads = request.body;
-    const createAds = await createAds(ads);
+    const adsDetailAdded = await createAds(ads);
     response.status(201);
-    response.send(createAds);
+    response.send(adsDetailAdded);
   } catch (error) {
     response.status(404).send(error);
   }
 };
 
-const searchAds = async (request: Request, response) => {
+const searchAds = async (
+  request: Request<RequestParams, ResponseBody, RequestBody, RequestQuery>,
+  response: Response
+) => {
   try {
-    const searchParm = request.params;
-    const getSearchAds = await getSearchAds(searchParm);
+    const { searchText } = request.query;
+    const searchAds = await getSearchAds(searchText);
     response.status(200);
-    response.send(getSearchAds);
+    response.send(searchAds);
   } catch (error) {
     response.status(404).send(error);
   }
